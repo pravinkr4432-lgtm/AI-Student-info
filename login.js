@@ -1,5 +1,5 @@
 const emailError = document.querySelector("#emailError");
-const passwordError = document.querySelector("#passwordError");
+const passwordError = document.querySelector("#passwordError"); 
 /* ==========================================================
                     DOM ELEMENTS
 ========================================================== */
@@ -14,6 +14,7 @@ const togglePassword = document.querySelector(".toggle-password");
 
 const loginButton = document.querySelector(".login-btn");
 
+const inputGroups = document.querySelectorAll(".input-group");
 
 /* ==========================================================
                 SHOW / HIDE PASSWORD
@@ -44,70 +45,159 @@ if (togglePassword && passwordInput) {
                 LOGIN FORM VALIDATION
 ========================================================== */
 
+/* ==========================================================
+                LOGIN FORM VALIDATION
+========================================================== */
+
 if (loginForm) {
 
     loginForm.addEventListener("submit", (e) => {
 
         e.preventDefault();
 
-        const email = emailInput.value.trim();
+        clearError(emailInput);
+        clearError(passwordInput);
 
+        const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
 
-        // Reset Previous Styles
-
-        emailInput.parentElement.style.borderColor = "";
-        passwordInput.parentElement.style.borderColor = "";
-
-        // Empty Email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (email === "") {
 
-            emailInput.parentElement.style.borderColor = "#ef4444";
+            showError(emailInput, "Email is required.");
 
             emailInput.focus();
-
-            alert("Please enter your email address.");
 
             return;
 
         }
-
-        // Email Format
-
-        const emailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(email)) {
 
-            emailInput.parentElement.style.borderColor = "#ef4444";
+            showError(emailInput, "Enter a valid email address.");
 
             emailInput.focus();
 
-            alert("Please enter a valid email address.");
-
             return;
 
         }
-
-        // Empty Password
 
         if (password === "") {
 
-            passwordInput.parentElement.style.borderColor = "#ef4444";
+            showError(passwordInput, "Password is required.");
 
             passwordInput.focus();
-
-            alert("Please enter your password.");
 
             return;
 
         }
 
-        // Success
-
-        alert("Validation Successful!");
+        console.log("Validation Passed ✅");
 
     });
 
 }
+/* ==========================================================
+                VALIDATION HELPERS
+========================================================== */
+
+function showError(input, message){
+
+    const inputGroup = input.closest(".input-group");
+
+    const inputField = inputGroup.querySelector(".input-field");
+
+    const errorText = inputGroup.querySelector(".error-message");
+
+    inputField.style.borderColor = "#ef4444";
+
+    errorText.textContent = message;
+
+}
+
+function clearError(input){
+
+    const inputGroup = input.closest(".input-group");
+
+    const inputField = inputGroup.querySelector(".input-field");
+
+    const errorText = inputGroup.querySelector(".error-message");
+
+    inputField.style.borderColor = "";
+
+    errorText.textContent = "";
+
+}
+/* ==========================================================
+                LIVE INPUT VALIDATION
+========================================================== */
+
+emailInput.addEventListener("input", () => {
+
+    clearError(emailInput);
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailInput.value.trim() !== "" &&
+        emailPattern.test(emailInput.value.trim())) {
+
+        emailInput
+            .closest(".input-group")
+            .querySelector(".input-field")
+            .style.borderColor = "#22c55e";
+
+    }
+
+});
+
+passwordInput.addEventListener("input", () => {
+
+    clearError(passwordInput);
+
+    if (passwordInput.value.trim() !== "") {
+
+        passwordInput
+            .closest(".input-group")
+            .querySelector(".input-field")
+            .style.borderColor = "#22c55e";
+
+    }
+
+});
+/* ==========================================================
+                PASSWORD LENGTH
+========================================================== */
+
+if (password.length < 8) {
+
+    showError(
+        passwordInput,
+        "Password must be at least 8 characters."
+    );
+
+    passwordInput.focus();
+
+    return;
+
+}
+/* ==========================================================
+                LOGIN REQUEST
+========================================================== */
+
+loginButton.disabled = true;
+
+loginButton.textContent = "Logging in...";
+
+/*
+
+    PHP Integration
+
+    fetch("auth/login.php",{
+        method:"POST",
+        body:new FormData(loginForm)
+    })
+
+*/
+
+console.log("Ready for PHP Integration");
