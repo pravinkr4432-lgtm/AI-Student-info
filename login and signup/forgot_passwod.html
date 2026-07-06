@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forgot Password</title>
+
+
+<link rel="stylesheet" href="forgot_password.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="forgot-wrapper">
+
+
+    <div class="forgot-card">
+
+
+        <!-- HEADER -->
+
+
+        <div class="header">
+
+
+            <h1>LearnFlow AI</h1>
+
+            <p id="subtitle">
+
+                Recover your account
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- EMAIL SECTION -->
+
+
+        <div class="form-section active" id="emailSection">
+
+
+            <h2>Forgot Password?</h2>
+
+
+            <p class="info">
+
+                Enter your registered email to receive OTP
+
+            </p>
+
+
+
+            <div class="input-box">
+
+
+                <input 
+                type="email"
+                id="email"
+                required
+                >
+
+
+                <label>Email Address</label>
+
+
+            </div>
+
+
+
+            <button id="sendOtpBtn">
+
+                Send OTP
+
+            </button>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- OTP SECTION -->
+
+
+        <div class="form-section" id="otpSection">
+
+
+            <h2>Verify OTP</h2>
+
+
+            <p class="info">
+
+                OTP sent to
+
+                <span id="userEmail"></span>
+
+            </p>
+
+
+
+            <div class="input-box">
+
+
+                <input
+
+                type="text"
+
+                id="otp"
+
+                maxlength="6"
+
+                required
+
+                >
+
+
+                <label>Enter OTP</label>
+
+
+            </div>
+
+
+
+            <button id="verifyOtpBtn">
+
+                Verify OTP
+
+            </button>
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- RESET PASSWORD SECTION -->
+
+
+        <div class="form-section" id="passwordSection">
+
+
+            <h2>Create Password</h2>
+
+
+            <p class="info">
+
+                Updating password for
+
+                <span id="resetEmail"></span>
+
+            </p>
+
+
+
+            <div class="input-box">
+
+
+                <input
+
+                type="password"
+
+                id="newPassword"
+
+                required
+
+                >
+
+
+                <label>New Password</label>
+
+
+            </div>
+
+
+
+
+            <div class="input-box">
+
+
+                <input
+
+                type="password"
+
+                id="confirmPassword"
+
+                required
+
+                >
+
+
+                <label>Confirm Password</label>
+
+
+            </div>
+
+
+
+            <button id="updatePasswordBtn">
+
+                Update Password
+
+            </button>
+
+
+        </div>
+
+
+
+
+        <a href="login.html" class="back-login">
+
+            Back to Login
+
+        </a>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+<script src="forgot_password.js"></script>
+
+
+</body>
+
+
+</html>
